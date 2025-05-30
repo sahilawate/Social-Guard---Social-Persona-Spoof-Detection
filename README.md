@@ -23,12 +23,12 @@ Profile picture analysis
 
 # Tech Stack
 1. Frontend:
-HTML5
-CSS3 
+HTML5,
+CSS3, 
 JavaScript
 
 2. Backend:
-Python Flask (Web framework for routing and API endpoints)
+Python Flask (Web framework for routing and API endpoints),
 Instaloader (for profile data extraction)
 
 3. Data Processing & Analysis:
