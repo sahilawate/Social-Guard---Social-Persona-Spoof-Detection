@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Analysis Results - SocialGuard</title>
+  <link rel="stylesheet" href="{{url_for('static',filename='styles.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='results.css')}}">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-content">
+      <a href="/" class="logo">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+        </svg>
+        <span>SocialGuard</span>
+      </a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="#how-to">How It Works</a>
+        <a href="#detect">Detect Now</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="results-page">
+    <div class="container">
+      <a href="/" class="back-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m15 18-6-6 6-6"/>
+        </svg>
+        Back to Home
+      </a>
+
+      <div class="results-container">
+        <div class="results-header">
+          <h1>Analysis Results</h1>
+        </div>
+
+        <div class="results-content">
+          <div class="risk-assessment">
+            <h2>Risk Assessment</h2>
+            <p>The system has analyzed the provided profile.</p>
+          </div>
+
+          <div class="profile-snapshot">
+            <h3>Profile Details</h3>
+            <p id="profile-username" style="font-weight: bold;"></p>
+            <p id="profile-bio"></p>
+            <p><strong>Followers:</strong> <span id="profile-followers"></span></p>
+            <p><strong>Following:</strong> <span id="profile-following"></span></p>
+          </div>
+
+          <div class="trust-score-container">
+            <div class="trust-score-header">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+              </svg>
+              <h3>Trustworthiness Score</h3>
+            </div>
+
+            <div class="trust-score-bar">
+              <div id="trust-score-fill" class="trust-score-fill"></div>
+            </div>
+            <p id="trust-score-text"></p>
+          </div>
+
+          <div id="risk-factors" class="factors-section">
+            <h3>Risk Factors Detected</h3>
+            <ul id="risk-factors-list"></ul>
+          </div>
+
+          <div id="positive-factors" class="factors-section">
+            <h3>Positive Indicators</h3>
+            <ul id="positive-factors-list"></ul>
+          </div>
+
+          <div class="recommendation-box">
+            <div class="recommendation-header">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="16" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12.01" y2="8"/>
+              </svg>
+              <h4>Recommendation</h4>
+            </div>
+            <p id="recommendation-text"></p>
+            <p class="disclaimer">
+              This analysis is based on public data and algorithms. It is one factor in assessing credibility.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 SocialGuard. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const result = JSON.parse(localStorage.getItem("analysisResult"));
+      if (!result) {
+        document.body.innerHTML = "<h2>Error loading results.</h2>";
+        return;
+      }
+
+      document.getElementById("profile-username").textContent = result.username;
+      document.getElementById("profile-bio").textContent = result.bio;
+      document.getElementById("profile-followers").textContent = result.followers?.toLocaleString() ?? "N/A";
+      document.getElementById("profile-following").textContent = result.following?.toLocaleString() ?? "N/A";
+
+      const trustBar = document.getElementById("trust-score-fill");
+      trustBar.style.width = result.trust_score + "%";
+      trustBar.style.backgroundColor =
+        result.trust_score >= 70 ? "green" :
+        result.trust_score >= 40 ? "orange" : "red";
+      document.getElementById("trust-score-text").textContent = result.trust_score + "% Trust Score";
+
+      // Risk factors
+      const riskList = document.getElementById("risk-factors-list");
+      riskList.innerHTML = "";
+      if (result.red_flags && result.red_flags.length > 0) {
+        result.red_flags.forEach(flag => {
+          const li = document.createElement("li");
+          li.textContent = flag;
+          riskList.appendChild(li);
+        });
+      } else {
+        riskList.innerHTML = "<li>No significant risks found.</li>";
+      }
+
+      // Positive indicators
+      const posList = document.getElementById("positive-factors-list");
+      posList.innerHTML = "";
+      if (result.positive_factors && result.positive_factors.length > 0) {
+        result.positive_factors.forEach(pos => {
+          const li = document.createElement("li");
+          li.textContent = pos;
+          posList.appendChild(li);
+        });
+      } else {
+        posList.innerHTML = "<li>No strong positive indicators.</li>";
+      }
+
+      // Recommendation
+      document.getElementById("recommendation-text").textContent =
+        result.trust_score >= 70
+          ? "This account appears legitimate and trustworthy."
+          : result.trust_score >= 40
+          ? "Some indicators are concerning. Proceed with caution."
+          : "This account appears suspicious. Avoid interaction or verify authenticity.";
+    });
+
+      const trustBar = document.getElementById("trust-score-fill");
+      trustBar.style.width = result.trust_score + "%";
+      trustBar.classList.remove("high", "medium", "low");
+      if (result.trust_score >= 70) {
+        trustBar.classList.add("high");
+      } else if (result.trust_score >= 40) {
+        trustBar.classList.add("medium");
+      } else {
+        trustBar.classList.add("low");
+      }
+
+    riskList.innerHTML = "";
+    if (result.red_flags?.length > 0) {
+      result.red_flags.forEach(flag => {
+        const li = document.createElement("li");
+        li.textContent = flag;
+        li.style.paddingLeft = "1rem";
+        riskList.appendChild(li);
+      });
+    } else {
+      riskList.innerHTML = "<li style='padding-left:1rem;'>No significant risks found.</li>";
+    }
+
+    posList.innerHTML = "";
+    if (result.positive_factors?.length > 0) {
+      result.positive_factors.forEach(pos => {
+        const li = document.createElement("li");
+        li.textContent = pos;
+        li.style.paddingLeft = "1rem"; 
+        posList.appendChild(li);
+      });
+    } else {
+      posList.innerHTML = "<li style='padding-left:1rem;'>No strong positive indicators.</li>";
+    }
+
+  </script>
+</body>
+</html>

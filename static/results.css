@@ -1,0 +1,270 @@
+.results-page {
+  background-color: var(--color-gray-50);
+  padding: 3rem 0;
+  min-height: calc(100vh - 64px - 320px);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  margin-bottom: 2rem;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: var(--color-primary-light);
+}
+
+.results-container {
+  background: var(--color-white);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.results-header {
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: 2rem;
+}
+
+.results-header h1 {
+  font-size: 1.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.results-header p {
+  color: var(--color-gray-200);
+}
+
+.results-content {
+  padding: 2rem;
+}
+
+.risk-assessment {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.risk-assessment h2 {
+  font-size: 1.5rem;
+  color: var(--color-gray-800);
+  margin-bottom: 0.5rem;
+}
+
+.risk-assessment p {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  padding-right: 25rem;
+}
+
+.risk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-weight: 500;
+}
+
+.risk-badge.high {
+  background-color: var(--color-danger);
+  color: var(--color-white);
+}
+
+.risk-badge.medium {
+  background-color: var(--color-warning);
+  color: var(--color-gray-800);
+}
+
+.risk-badge.low {
+  background-color: var(--color-success);
+  color: var(--color-white);
+}
+
+.profile-snapshot {
+  background-color: var(--color-gray-50);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid var(--color-gray-200);
+}
+
+.profile-snapshot h3 {
+  font-size: 1.25rem;
+  color: var(--color-gray-800);
+  margin-bottom: 1rem;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.profile-username {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--color-gray-800);
+}
+
+.profile-bio {
+  font-size: 0.95rem;
+  color: var(--color-gray-700);
+  white-space: pre-wrap;
+}
+
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .profile-pic {
+    width: 72px;
+    height: 72px;
+  }
+}
+
+.trust-score-container {
+  background: var(--color-gray-50);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.trust-score-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.trust-score-bar {
+  width: 100%;
+  height: 1.5rem;
+  background: var(--color-gray-200);
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.trust-score-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 1s ease-out;
+}
+
+.trust-score-fill.high {
+  background-color: var(--color-success);
+}
+
+.trust-score-fill.medium {
+  background-color: var(--color-warning);
+}
+
+.trust-score-fill.low {
+  background-color: var(--color-danger);
+}
+
+.factors-section {
+  margin-bottom: 2rem;
+}
+
+.factors-section h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.factors-section ul {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+}
+
+.factor-card {
+  border-left-width: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.factor-card.risk {
+  border-left-color: var(--color-danger);
+  background-color: #FEF2F2;
+}
+
+.factor-card.positive {
+  border-left-color: var(--color-success);
+  background-color: #F0FDF4;
+}
+
+.factor-card-header {
+  display: flex;
+  align-items: start;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.factor-card.risk .factor-card-header {
+  color: #991B1B;
+}
+
+.factor-card.positive .factor-card-header {
+  color: #166534;
+}
+
+.factor-card-title {
+  font-weight: 500;
+}
+
+.recommendation-box {
+  background-color: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+.recommendation-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.recommendation-header h4 {
+  font-size: 1.125rem;
+}
+
+.disclaimer {
+  font-size: 0.875rem;
+  color: var(--color-gray-600);
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .results-page {
+    padding: 1.5rem 0;
+  }
+  
+  .results-content {
+    padding: 1.5rem;
+  }
+  
+  .risk-assessment {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .risk-badge {
+    margin-top: 0.5rem;
+  }
+}
