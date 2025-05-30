@@ -7,7 +7,7 @@ Currently, there's no easy or reliable way for users to know if someone is copyi
 There’s a clear need for an automated, user-friendly system that can quickly detect and alert users about potential spoofing profiles and thus avoid scams.
 
 # Approach and Solution
-To solve the issue of fake or spoofed social media profiles, we propose "SocialTrust –Social Persona Spoof Detection" a simple and effective web-based tool designed to help users identify if a particular profile might be impersonating someone and if it is safe or not.
+To solve the issue of fake or spoofed social media profiles, we propose "SocialGuard –Social Persona Spoof Detection" a simple and effective web-based tool designed to help users identify if a particular profile might be impersonating someone and if it is safe or not.
 The tool works by analyzing different aspects of a profile, such as:
 Username patterns
 Bio similarity
