@@ -19,7 +19,7 @@ Profile picture analysis
 2. Rule-based engine flags spoof patterns in profiles.
 3. Generates a Trust Score.
 4. Explains each suspicious indicator.
-5. Responsive Interface
+5. Responsive Interface.
 
 # Tech Stack
 1. Frontend:
